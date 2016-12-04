@@ -10,7 +10,7 @@ Compatibility: X3 – X5, ...
 ### Help
 
 There is a lot of code and other macros I want to open for free.   
-If you know VBA or C# and want to help, please contact me here or in [twitter](https://twitter.com/cdrpro_ru).
+If you know VBA or C# and want to help, please contact me here or in [twitter](https://twitter.com/SanichKotikov).
 
 ### License
 
