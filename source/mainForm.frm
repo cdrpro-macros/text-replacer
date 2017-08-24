@@ -19,10 +19,10 @@ Private sCount&
 Private Sub UserForm_Initialize()
     Me.Caption = macroName & " " & macroVersion
     Dim sPos$
-    sPos = GetSetting("TextReplacer", "Options", "Pos")
-    If Len(sPos) Then: StartUpPosition = 0: Move CSng(Split(sPos, " ")(0)), CSng(Split(sPos, " ")(1))
+'    sPos = GetSetting("TextReplacer", "Options", "Pos")
+'    If Len(sPos) Then: StartUpPosition = 0: Move CSng(Split(sPos, " ")(0)), CSng(Split(sPos, " ")(1))
     
-    sPath = CorelDRAW.GMSManager.GMSPath
+    sPath = GMSManager.UserGMSPath
     If Right$(sPath, 1) <> "\" Then sPath = sPath & "\"
     myListName = ""
     listZamFileLOAD
@@ -36,10 +36,11 @@ Private Sub UserForm_Initialize()
     
     FindFormat(0) = "0"
     ChangeFormat(0) = "0"
-    End Sub
-Private Sub UserForm_QueryClose(Cancel As Integer, CloseMode As Integer)
-    SaveSetting "TextReplacer", "Options", "Pos", Left & " " & Top
-    End Sub
+End Sub
+
+'Private Sub UserForm_QueryClose(Cancel As Integer, CloseMode As Integer)
+'    SaveSetting "TextReplacer", "Options", "Pos", Left & " " & Top
+'    End Sub
 
 '====================================================================================
 '==========================    Загрузка наборов замен     ===========================
@@ -344,9 +345,21 @@ Private Sub cm_QuickReplace_Click()
     
 Private Function myFindShapes() As ShapeRange
     Select Case cb_Mode.Text
-    Case "Document": Set myFindShapes = ActivePage.FindShapes(, cdrTextShape) 'править!!!!!!!!!
-    Case "Current page": Set myFindShapes = ActivePage.FindShapes(, cdrTextShape)
-    Case "Selection": Set myFindShapes = ActiveSelectionRange
+        Case "Document"
+            Dim p As Page
+            Dim startPage As Page
+            Set startPage = ActivePage
+            Dim sr As New ShapeRange
+            For Each p In ActiveDocument.Pages
+                p.Activate
+                sr.AddRange ActivePage.FindShapes(, cdrTextShape)
+            Next
+            startPage.Activate
+            Set myFindShapes = sr
+        Case "Current page"
+            Set myFindShapes = ActivePage.FindShapes(, cdrTextShape)
+        Case "Selection"
+            Set myFindShapes = ActiveSelectionRange
     End Select
     End Function
         

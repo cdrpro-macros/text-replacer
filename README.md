@@ -4,13 +4,10 @@ A source code of TextReplacer macro.
 
 ### About TextReplacer
 
-A macro for batch finding and replacing of text in CorelDRAW. It supports GREP also.   
-Compatibility: X3 – X5, ...
+A macro for batch finding and replacing of text in CorelDRAW. It supports GREP also.
 
-### Help
-
-There is a lot of code and other macros I want to open for free.   
-If you know VBA or C# and want to help, please contact me here or in [twitter](https://twitter.com/SanichKotikov).
+* Version: 1.2
+* Compatibility: X3 – X5, X7
 
 ### License
 

@@ -17,5 +17,5 @@ Public Sub boostFinish(Optional ByVal endUndoGroup% = False)
     Optimization = False
     Application.CorelScript.RedrawScreen
     If endUndoGroup Then ActiveDocument.EndCommandGroup
-    CorelDRAW.Refresh
+    Refresh
     End Sub
